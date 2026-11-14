@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dicionário de Dados &amp; Governança | Assaí Atacadista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button id="sidebarToggle" class="icon-btn mobile-only" aria-label="Abrir menu de tabelas">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="brand-badge">ASSAÍ</div>
+      <div class="brand-titles">
+        <h1>Dicionário de Dados Corporativo</h1>
+        <span>Sistema de E-commerce e Gestão de Pedidos | Assaí Atacadista</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span class="governance-tag"><i class="fa-solid fa-shield-halved"></i> DAMA-DMBOK &amp; COBIT</span>
+      <button id="themeToggle" class="theme-btn" aria-label="Alternar tema claro ou escuro">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+        <span id="themeText">Modo Escuro</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <!-- Sidebar Esquerda -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <h2>Entidades do Modelo (15)</h2>
+        <button id="sidebarClose" class="icon-btn mobile-only" aria-label="Fechar menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="sidebar-search-mini">
+        <span id="sidebarTableCount">15 tabelas mapeadas</span>
+      </div>
+      <nav aria-label="Navegação de tabelas">
+        <ul id="sidebarNavList" class="nav-list">
+          <!-- Populado dinamicamente via script.js com todas as 15 tabelas do DDL -->
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="legend-title">Classificação LGPD</div>
+        <div class="legend-item"><span class="badge-lgpd badge-dps">[DPS]</span> Dado Pessoal Sensível</div>
+        <div class="legend-item"><span class="badge-lgpd badge-dp">[DP]</span> Dado Pessoal</div>
+        <div class="legend-item"><span class="badge-lgpd badge-na">[N/A]</span> Não Aplicável</div>
+      </div>
+    </aside>
+
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- Área Principal -->
+    <main class="main-content">
+      <!-- Seção de Identificação do Projeto -->
+      <section class="project-overview" aria-labelledby="overviewHeading">
+        <div class="overview-header">
+          <div>
+            <span class="eyebrow">Catálogo de Metadados &amp; Arquitetura de Dados</span>
+            <h2 id="overviewHeading">Identificação e Governança do Projeto</h2>
+          </div>
+          <div class="tech-pill">
+            <i class="fa-solid fa-database"></i> Tecnologia: <strong>MySQL (InnoDB)</strong>
+          </div>
+        </div>
+
+        <div class="overview-grid">
+          <div class="overview-card scope-card">
+            <h3><i class="fa-solid fa-bullseye"></i> Escopo do Projeto</h3>
+            <p>
+              Base de dados relacional centralizada para o site de compras do <strong>Assaí Atacadista</strong> (modelo atacarejo B2C e B2B). Sustenta o cadastro de clientes (PF/PJ) e endereços, catálogo de produtos com precificação dinâmica por faixa de volume (varejo e atacado), congelamento histórico de preços nos itens de pedido, controle transacional de saldo de estoque por loja e centro de distribuição (CD), fluxos de entrega ou retirada, cancelamento com estorno (CDC), trilha de auditoria imutável (Marco Civil da Internet) e conformidade integral com retenção fiscal (CTN) e direitos do titular (LGPD).
+            </p>
+          </div>
+
+          <div class="overview-card team-card">
+            <h3><i class="fa-solid fa-users-gear"></i> Responsáveis pela Governança</h3>
+            <ul class="team-list">
+              <li>
+                <strong>Mickael de Souza Duete</strong>
+                <span>Data Owner / Data Steward (Requisitos, Regras de Negócio e Conformidade LGPD)</span>
+              </li>
+              <li>
+                <strong>David Henry H. Carita</strong>
+                <span>Data Steward / Arquiteto de Dados (Modelagem Conceitual DER e Integridade Referencial)</span>
+              </li>
+              <li>
+                <strong>Deiwison da Silva Santos</strong>
+                <span>Data Steward / Engenheiro de Dados (Engenharia DDL MySQL, Segurança RBAC e Auditoria)</span>
+              </li>
+              <li class="advisor-item">
+                <strong>Prof. Dr. Diego Carvalho</strong>
+                <span>Professor Orientador | Modelagem de Banco de Dados</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- KPIs do Esquema -->
+        <div class="kpi-strip">
+          <div class="kpi-box">
+            <span class="kpi-value" id="kpiTables">15</span>
+            <span class="kpi-label">Tabelas Físicas (3FN)</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-value" id="kpiColumns">93</span>
+            <span class="kpi-label">Atributos Catalogados</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-value" id="kpiPII">0</span>
+            <span class="kpi-label">Atributos com Dados Pessoais (DP/DPS)</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-value">18</span>
+            <span class="kpi-label">Chaves Estrangeiras (FK)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Painel de Controle Acima do Dicionário -->
+      <section class="control-panel" aria-label="Controles do Dicionário">
+        <div class="search-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Filtrar em tempo real por nome da tabela, coluna, tipo, constraint ou regra..."
+            autocomplete="off"
+          >
+          <button id="clearSearchBtn" class="clear-btn hidden" aria-label="Limpar pesquisa">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
+        </div>
+
+        <div class="action-buttons">
+          <a href="docs/Especificacao_Requisitos_Regras_Negocio_BD.pdf" download class="btn btn-primary">
+            <i class="fa-solid fa-file-pdf"></i> Baixar Especificação de Requisitos (PDF)
+          </a>
+          <button id="openDerModalBtn" class="btn btn-secondary" type="button">
+            <i class="fa-solid fa-diagram-project"></i> Visualizar DER (Zoom Interativo)
+          </button>
+        </div>
+      </section>
+
+      <div id="searchStatus" class="search-status" aria-live="polite"></div>
+
+      <!-- Container do Dicionário de Dados -->
+      <div id="dictionaryContainer" class="dictionary-container">
+        <!-- Renderizado integralmente via script.js com todas as 15 tabelas e 93 colunas do DDL -->
+      </div>
+
+      <footer class="main-footer">
+        <p>Dicionário de Dados Corporativo &mdash; Assaí Atacadista | Padrões DAMA-DMBOK, COBIT e LGPD (Lei nº 13.709/2018).</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Modal Visualizador do DER com Panzoom.js -->
+  <div id="derModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="derModalTitle" hidden>
+    <div class="modal-backdrop" id="derModalBackdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <i class="fa-solid fa-diagram-project"></i>
+          <h2 id="derModalTitle">Diagrama Entidade e Relacionamento (DER) &mdash; Assaí Atacadista</h2>
+        </div>
+        <div class="modal-toolbar">
+          <button type="button" id="zoomInBtn" class="tool-btn" title="Aumentar Zoom (+)">
+            <i class="fa-solid fa-magnifying-glass-plus"></i> Zoom +
+          </button>
+          <button type="button" id="zoomOutBtn" class="tool-btn" title="Diminuir Zoom (-)">
+            <i class="fa-solid fa-magnifying-glass-minus"></i> Zoom -
+          </button>
+          <button type="button" id="zoomResetBtn" class="tool-btn" title="Resetar Posição e Tamanho">
+            <i class="fa-solid fa-arrows-rotate"></i> Reset
+          </button>
+          <button type="button" id="closeDerModalBtn" class="tool-btn close-modal-btn" title="Fechar Visualizador">
+            <i class="fa-solid fa-xmark"></i> Fechar
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" id="panzoomWrapper">
+        <div id="panzoomContainer" class="panzoom-target">
+          <img src="assets/der.png" alt="Diagrama Entidade e Relacionamento do Sistema Assaí Atacadista" id="derImage">
+        </div>
+        <div class="modal-hint">
+          Use o scroll do mouse para aplicar zoom e clique e arraste para mover o diagrama livremente.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CDN Oficial Panzoom.js -->
+  <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+</html>
